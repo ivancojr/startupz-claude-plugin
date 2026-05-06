@@ -7,15 +7,13 @@
     "url": "https://startupz.com.br"
   },
   "homepage": "https://github.com/ivancojr/startupz-claude-plugin",
-  "commands": [
-    "commands/setup.md",
-    "commands/morning.md",
-    "commands/uninstall.md"
-  ],
-  "hooks": {
-    "SessionStart": "hooks/session-start.sh"
-  },
-  "skills": [
-    "skills/startupz-briefing"
+  "repository": "https://github.com/ivancojr/startupz-claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "startupz",
+    "startups",
+    "brasil",
+    "briefing",
+    "rss"
   ]
 }

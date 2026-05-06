@@ -10,9 +10,9 @@
   [ "$status" -eq 0 ]
 }
 
-@test "plugin.json declara commands, hooks e skills" {
-  run jq -e '.commands and .hooks and .skills' .claude-plugin/plugin.json
-  [ "$status" -eq 0 ]
+@test "plugin.json nao declara commands/hooks/skills (auto-discovery)" {
+  run jq -e 'has("commands") or has("hooks") or has("skills")' .claude-plugin/plugin.json
+  [ "$status" -ne 0 ]
 }
 
 @test "marketplace.json é JSON válido" {
@@ -23,4 +23,20 @@
 @test "marketplace.json registra o plugin com source ./" {
   run jq -e '.plugins[] | select(.name == "startupz-claude-plugin" and .source == "./")' .claude-plugin/marketplace.json
   [ "$status" -eq 0 ]
+}
+
+@test "hooks/hooks.json é JSON válido" {
+  run jq empty hooks/hooks.json
+  [ "$status" -eq 0 ]
+}
+
+@test "hooks.json declara SessionStart com matcher e command" {
+  run jq -e '.hooks.SessionStart[0] | (.matcher and .hooks[0].command)' hooks/hooks.json
+  [ "$status" -eq 0 ]
+}
+
+@test "diretórios de auto-discovery existem" {
+  [ -d commands ]
+  [ -d skills/startupz-briefing ]
+  [ -d hooks ]
 }
