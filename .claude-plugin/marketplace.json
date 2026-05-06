@@ -1,0 +1,34 @@
+{
+  "name": "startupz",
+  "owner": {
+    "name": "Startupz",
+    "url": "https://github.com/ivancojr"
+  },
+  "metadata": {
+    "description": "Marketplace do plugin Startupz Briefing.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "startupz-claude-plugin",
+      "source": "./",
+      "description": "Briefing diário do ecossistema brasileiro de startups direto no Claude Code, com Startupz como âncora editorial.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Startupz",
+        "url": "https://startupz.com.br"
+      },
+      "homepage": "https://github.com/ivancojr/startupz-claude-plugin",
+      "repository": "https://github.com/ivancojr/startupz-claude-plugin",
+      "license": "MIT",
+      "keywords": [
+        "startupz",
+        "startups",
+        "brasil",
+        "briefing",
+        "rss",
+        "ecossistema"
+      ]
+    }
+  ]
+}

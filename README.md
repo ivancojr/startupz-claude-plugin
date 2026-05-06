@@ -6,15 +6,27 @@ Todo dia de manhã, você abre o Claude e o briefing já está lá: 3 destaques 
 
 ## Instalação
 
-**Pré-requisitos:** macOS, Claude Code CLI, `jq` (`brew install jq`).
+### Claude Code CLI / Desktop (macOS)
+
+**Pré-requisitos:** Claude Code, `jq` (`brew install jq`).
 
 ```
 /plugin marketplace add ivancojr/startupz-claude-plugin
-/plugin install startupz-claude-plugin
+/plugin install startupz-claude-plugin@startupz
 /startupz:setup
 ```
 
-Pronto. Amanhã 7h o cron gera o briefing; ao abrir o Claude Code, ele aparece automático.
+Amanhã 7h o cron gera o briefing; ao abrir o Claude Code, ele aparece automático.
+
+### Cowork / Claude Code Web
+
+```
+/plugin marketplace add ivancojr/startupz-claude-plugin
+/plugin install startupz-claude-plugin@startupz
+/startupz:morning
+```
+
+Cowork não tem cron local, então `/startupz:morning` faz fetch das fontes em paralelo e gera o briefing inline (~30-60s).
 
 ## Comandos
 
