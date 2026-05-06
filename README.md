@@ -18,11 +18,17 @@ Pronto. Amanhã 7h o cron gera o briefing; ao abrir o Claude Code, ele aparece a
 
 ## Comandos
 
-| Comando | O que faz |
-|---|---|
-| `/startupz:setup [hora] [min]` | Instala o cron diário. Default: 7h. |
-| `/startupz:morning` | Exibe o briefing do dia (gera sob demanda se faltar). |
-| `/startupz:uninstall` | Remove o cron. Mantém histórico. |
+| Comando | O que faz | Onde funciona |
+|---|---|---|
+| `/startupz:setup [hora] [min]` | Instala o cron diário (default 7h). | Claude Code CLI (macOS) |
+| `/startupz:morning` | Exibe o briefing do dia. Usa o local salvo se houver, senão gera inline via WebFetch. | CLI, Cowork, Chat web |
+| `/startupz:uninstall` | Remove o cron. Mantém histórico. | Claude Code CLI (macOS) |
+
+## Onde funciona
+
+- **Claude Code CLI (macOS):** experiência completa — cron local 7h + briefing aparece automático ao abrir.
+- **Cowork (`claude.ai/code` web):** sem cron, mas `/startupz:morning` faz fetch e gera inline quando você pede.
+- **Chat web (`claude.ai`):** mesmo `/startupz:morning` — fetch + síntese inline.
 
 ## Arquivos
 
