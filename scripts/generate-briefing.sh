@@ -91,7 +91,11 @@ if [ "$NO_LLM" -eq 1 ]; then
   } > "$TARGET"
 else
   log "Chamando claude --print..."
-  if ! echo "$PAYLOAD" | claude --print --skill startupz-briefing > "$TARGET" 2>>"$LOG"; then
+  PROMPT="Use a skill startupz-briefing pra gerar o briefing diário do ecossistema brasileiro de startups a partir do JSON abaixo. Saída: markdown puro, pronto pra exibir.
+
+JSON:
+$PAYLOAD"
+  if ! claude --print --plugin-dir "$PLUGIN_PATH" --append-system-prompt-file "$PLUGIN_PATH/skills/startupz-briefing/SKILL.md" "$PROMPT" > "$TARGET" 2>>"$LOG"; then
     log "ERRO: claude --print falhou. Salvando fallback."
     bash "$0" --no-llm
     exit 1
