@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Brazil Journal Test</title>
+    <link>https://braziljournal.com</link>
+    <item>
+      <title>Startup X levanta R$ 50mi</title>
+      <link>https://braziljournal.com/post-1</link>
+      <pubDate>Wed, 06 May 2026 09:00:00 -0300</pubDate>
+      <description><![CDATA[<p>Lorem ipsum sobre fundraising.</p>]]></description>
+    </item>
+    <item>
+      <title>Notícia velha</title>
+      <link>https://braziljournal.com/post-old</link>
+      <pubDate>Mon, 01 Jan 2024 09:00:00 -0300</pubDate>
+      <description>Antiga.</description>
+    </item>
+  </channel>
+</rss>
