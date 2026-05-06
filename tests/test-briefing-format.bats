@@ -40,3 +40,27 @@ teardown() {
   bash "$STARTUPZ_PLUGIN_PATH/scripts/generate-briefing.sh" --no-llm
   [ ! -f "$HOME/.startupz/briefings/${old}.md" ]
 }
+
+@test "session-start exibe briefing do dia se existe" {
+  today=$(date +%Y-%m-%d)
+  echo "# Briefing Startupz — $today" > "$HOME/.startupz/briefings/$today.md"
+  echo "conteudo de teste" >> "$HOME/.startupz/briefings/$today.md"
+  run bash "$STARTUPZ_PLUGIN_PATH/hooks/session-start.sh"
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"conteudo de teste"* ]]
+}
+
+@test "session-start é silencioso se não há briefing" {
+  run bash "$STARTUPZ_PLUGIN_PATH/hooks/session-start.sh"
+  [ "$status" -eq 0 ]
+  [ -z "$output" ]
+}
+
+@test "session-start respeita flag .shown e não duplica" {
+  today=$(date +%Y-%m-%d)
+  echo "# Briefing" > "$HOME/.startupz/briefings/$today.md"
+  bash "$STARTUPZ_PLUGIN_PATH/hooks/session-start.sh" >/dev/null
+  run bash "$STARTUPZ_PLUGIN_PATH/hooks/session-start.sh"
+  [ "$status" -eq 0 ]
+  [ -z "$output" ]
+}
