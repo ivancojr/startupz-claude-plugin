@@ -1,0 +1,21 @@
+# Test artifacts
+tests/.tmp/
+tests/output/
+*.tap
+.bats/
+
+# Local development
+~/.startupz/
+.env.local
+
+# Logs
+*.log
+logs/
+
+# Editor configuration
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
