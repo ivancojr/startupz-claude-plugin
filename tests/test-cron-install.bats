@@ -41,3 +41,24 @@ teardown() {
   bash "$STARTUPZ_PLUGIN_PATH/scripts/install-cron.sh" 7 0
   grep -q "load" "$HOME/.launchctl-calls.log"
 }
+
+@test "uninstall-cron.sh remove plist e chama unload" {
+  bash "$STARTUPZ_PLUGIN_PATH/scripts/install-cron.sh" 7 0
+  [ -f "$HOME/Library/LaunchAgents/co.startupz.briefing.plist" ]
+  run bash "$STARTUPZ_PLUGIN_PATH/scripts/uninstall-cron.sh"
+  [ "$status" -eq 0 ]
+  [ ! -f "$HOME/Library/LaunchAgents/co.startupz.briefing.plist" ]
+  grep -q "unload" "$HOME/.launchctl-calls.log"
+}
+
+@test "uninstall-cron.sh é idempotente (sem plist instalado)" {
+  run bash "$STARTUPZ_PLUGIN_PATH/scripts/uninstall-cron.sh"
+  [ "$status" -eq 0 ]
+}
+
+@test "uninstall-cron.sh preserva ~/.startupz/briefings" {
+  bash "$STARTUPZ_PLUGIN_PATH/scripts/install-cron.sh" 7 0
+  echo "test" > "$HOME/.startupz/briefings/2026-05-06.md"
+  bash "$STARTUPZ_PLUGIN_PATH/scripts/uninstall-cron.sh"
+  [ -f "$HOME/.startupz/briefings/2026-05-06.md" ]
+}
